@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Startex AI — AI-Powered M&A Deal Automation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Startex AI is an AI-powered fintech platform built on Google Cloud that automates Micro and Mid-market M&A deal workflows end-to-end."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #050816, #0b2340, #0c4569, #0f7f8f);
+      --card-bg: rgba(10, 15, 30, 0.9);
+      --accent: #4fd1c5;
+      --accent-soft: rgba(79, 209, 197, 0.14);
+      --text-main: #f7fafc;
+      --text-muted: #a0aec0;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --shadow-soft: 0 18px 35px rgba(0, 0, 0, 0.45);
+      --radius-lg: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      color: var(--text-main);
+      background-image: var(--bg-gradient);
+      background-attachment: fixed;
+      background-size: 200% 200%;
+      animation: bgShift 18s ease-in-out infinite alternate;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    @keyframes bgShift {
+      from {
+        background-position: 0% 0%;
+      }
+      to {
+        background-position: 100% 100%;
+      }
+    }
+
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 40px 20px 64px;
+    }
+
+    header {
+      margin-bottom: 40px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid var(--accent-soft);
+      color: var(--accent);
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 10px rgba(79, 209, 197, 0.9);
+    }
+
+    h1 {
+      margin-top: 18px;
+      font-size: clamp(32px, 4vw, 40px);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+    }
+
+    h1 span {
+      color: var(--accent);
+    }
+
+    .subtitle {
+      margin-top: 14px;
+      max-width: 640px;
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--text-muted);
+    }
+
+    .pill-row {
+      margin-top: 22px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .pill {
+      font-size: 12px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(15, 23, 42, 0.8);
+      color: var(--text-muted);
+    }
+
+    .pill strong {
+      color: var(--text-main);
+    }
+
+    .cta-row {
+      margin-top: 26px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      border-radius: 999px;
+      padding: 10px 20px;
+      font-size: 14px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.16s ease, box-shadow 0.16s ease,
+        background 0.16s ease, border-color 0.16s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: radial-gradient(circle at 0 0, #4fd1c5, #3182ce);
+      color: #0b1120;
+      box-shadow: 0 12px 25px rgba(15, 23, 42, 0.6);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 32px rgba(15, 23, 42, 0.8);
+    }
+
+    .btn-ghost {
+      background: rgba(15, 23, 42, 0.7);
+      border-color: var(--border-subtle);
+      color: var(--text-muted);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent-soft);
+      background: rgba(15, 23, 42, 0.9);
+      transform: translateY(-1px);
+    }
+
+    .btn-icon {
+      font-size: 16px;
+    }
+
+    .grid-two {
+      display: grid;
+      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.6fr);
+      gap: 28px;
+      margin-top: 40px;
+      align-items: flex-start;
+    }
+
+    .panel {
+      background: rgba(10, 16, 30, 0.9);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      padding: 20px 22px;
+      backdrop-filter: blur(18px);
+    }
+
+    .panel h2 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .panel p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+
+    .panel ul {
+      list-style: none;
+      margin-top: 6px;
+    }
+
+    .panel li {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      padding-left: 18px;
+      position: relative;
+      margin-bottom: 6px;
+    }
+
+    .panel li::before {
+      content: "";
+      position: absolute;
+      left: 4px;
+      top: 8px;
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+    }
+
+    /* Masonry section */
+    .section-title {
+      margin-top: 42px;
+      margin-bottom: 8px;
+      font-size: 16px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .masonry {
+      column-count: 3;
+      column-gap: 18px;
+      width: 100%;
+    }
+
+    .masonry-item {
+      break-inside: avoid;
+      -webkit-column-break-inside: avoid;
+      margin-bottom: 18px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 16px 18px 18px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .card-label {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .card h3 {
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    footer {
+      margin-top: 40px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 880px) {
+      .grid-two {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .masonry {
+        column-count: 2;
+      }
+    }
+
+    @media (max-width: 640px) {
+      main {
+        padding-top: 28px;
+      }
+      header {
+        margin-bottom: 28px;
+      }
+      .masonry {
+        column-count: 1;
+      }
+      .panel {
+        padding: 16px 14px;
+      }
+      .card {
+        padding: 14px 14px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div class="badge">
+        <span class="badge-dot"></span>
+        Built on Google Cloud · Fintech · AI for M&A
+      </div>
+      <h1>
+        Startex AI — <span>AI-Powered M&A Deal Automation</span>
+      </h1>
+      <p class="subtitle">
+        Startex AI is an AI-powered fintech platform on Google Cloud that
+        automates Micro and Mid-market M&amp;A, reducing time, cost, and
+        complexity while giving SMEs, startups, and investors access to a
+        professional, data-driven deal workflow.
+      </p>
+      <div class="pill-row">
+        <div class="pill"><strong>Solution status:</strong> Production</div>
+        <div class="pill">
+          <strong>Google products:</strong> Vertex AI · BigQuery · Cloud Run ·
+          Cloud Storage
+        </div>
+        <div class="pill">
+          <strong>Use cases:</strong> Deal sourcing · Matching · Automation
+        </div>
+      </div>
+      <div class="cta-row">
+        <a href="#architecture" class="btn-primary">
+          View solution details <span class="btn-icon">↘</span>
+        </a>
+        <a
+          href="https://www.startexai.tech"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-ghost"
+        >
+          Visit Startex AI
+        </a>
+      </div>
+    </header>
+
+    <section class="grid-two" id="architecture">
+      <article class="panel">
+        <h2>How the solution works with Google Cloud</h2>
+        <p>
+          Startex AI automates M&amp;A by orchestrating scouting, valuation,
+          matchmaking, and closing inside a single marketplace. Built on Google
+          Cloud, the platform supports secure data ingestion, financial document
+          processing, AI classification, real-time matching, and workflow
+          automation for buyers, sellers, and certified M&amp;A professionals.
+        </p>
+        <p>
+          The proprietary DealSeek algorithm runs on Vertex AI, analyzing
+          financial and qualitative data to score opportunities and suggest the
+          most relevant counterparties. BigQuery and Cloud Storage power the
+          analytics layer, enabling secure, high-performance queries and
+          pipelines across structured and unstructured deal data.
+        </p>
+        <p>
+          Cloud Run and Cloud Functions provide a serverless backbone for
+          mandate intake, automated evaluations, document exchange, partner
+          assignment, and transaction lifecycle management, allowing the team to
+          focus on product logic instead of infrastructure operations.
+        </p>
+      </article>
+
+      <aside class="panel">
+        <h2>Security &amp; collaboration</h2>
+        <p>
+          The environment is secured with IAM, VPC Service Controls, and
+          encryption in transit and at rest. Access policies are enforced across
+          roles and organizations, protecting sensitive M&amp;A data at every
+          step.
+        </p>
+        <p>
+          Integration with Google Workspace lets advisors, buyers, and sellers
+          collaborate on due-diligence documents, track negotiations, and close
+          deals in a structured, auditable flow that remains fully aligned with
+          corporate compliance requirements.
+        </p>
+      </aside>
+    </section>
+
+    <h2 class="section-title">Solution highlights</h2>
+    <section class="masonry">
+      <div class="masonry-item">
+        <div class="card">
+          <div class="card-label">AI &amp; Matching</div>
+          <h3>DealSeek proprietary algorithm</h3>
+          <p>
+            Machine learning models on Vertex AI correlate financials, sector
+            signals, and buyer profiles to surface the best counterparties for
+            each mandate and continuously refine predictions.
+          </p>
+        </div>
+      </div>
+
+      <div class="masonry-item">
+        <div class="card">
+          <div class="card-label">Data &amp; Analytics</div>
+          <h3>BigQuery-centric data layer</h3>
+          <p>
+            Deal pipelines, mandates, and performance metrics live in BigQuery,
+            enabling instant analysis of funnel conversion, valuations, and
+            investor appetite across Micro and Mid-market segments.
+          </p>
+        </div>
+      </div>
+
+      <div class="masonry-item">
+        <div class="card">
+          <div class="card-label">Serverless</div>
+          <h3>Cloud Run &amp; Cloud Functions</h3>
+          <p>
+            Stateless services power matchmaking, notifications, scoring jobs,
+            and workflows, scaling automatically with marketplace activity while
+            keeping operational overhead low.
+          </p>
+        </div>
+      </div>
+
+      <div class="masonry-item">
+        <div class="card">
+          <div class="card-label">Security</div>
+          <h3>Enterprise-grade protection</h3>
+          <p>
+            IAM, VPC Service Controls, and encryption safeguard every deal
+            artifact, with role-based access for advisors, buyers, sellers, and
+            internal teams.
+          </p>
+        </div>
+      </div>
+
+      <div class="masonry-item">
+        <div class="card">
+          <div class="card-label">Collaboration</div>
+          <h3>Google Workspace integration</h3>
+          <p>
+            Shared folders, comments, and structured workflows around Docs and
+            Sheets keep due diligence, valuation models, and transaction
+            artefacts aligned across stakeholders.
+          </p>
+        </div>
+      </div>
+
+      <div class="masonry-item">
+        <div class="card">
+          <div class="card-label">Impact</div>
+          <h3>Accessible M&amp;A for SMEs</h3>
+          <p>
+            By digitizing Micro and Mid-market M&amp;A on Google Cloud, Startex
+            AI lowers market barriers and enables continuity and growth for
+            SMEs, family businesses, and high-potential startups.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <span>© <span id="year"></span> Startex AI. All rights reserved.</span>
+      <span>
+        Built with Google Cloud ·
+        <a href="mailto:nicolo@startexai.tech">nicolo@startexai.tech</a>
+      </span>
+    </footer>
+  </main>
+
+  <script>
+    // Set current year in footer
+    document.getElementById("year").textContent =
+      new Date().getFullYear().toString();
+  </script>
+</body>
+</html>
